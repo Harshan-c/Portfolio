@@ -111,7 +111,7 @@ function Hero() {
               </div>
 
               <div>
-                <h3>10+</h3>
+                <h3>04+</h3>
                 <p>Projects Completed</p>
               </div>
             </div>
@@ -123,7 +123,7 @@ function Hero() {
               </div>
 
               <div>
-                <h3>3+</h3>
+                <h3>4+</h3>
                 <p>Years Learning</p>
               </div>
             </div>

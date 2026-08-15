@@ -8,24 +8,24 @@ import {
 function Projects() {
   const projects = [
     {
-      title: "OBSERA Health",
-      category: "AI / Machine Learning",
+      title: "Student Developer Club",
+      category: "Web Development",
 
       description:
-        "An AI-powered maternal health risk prediction system that analyzes health indicators and provides explainable risk insights using machine learning.",
+        "A student developer community platform built to connect student developers, share opportunities, showcase projects and encourage continuous learning in technology.",
 
       image: "/images/project1.png",
 
       technologies: [
-        "Python",
-        "Machine Learning",
-        "Random Forest",
-        "Streamlit",
-        "SHAP",
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Web Development",
+        "Cloudflare Pages",
       ],
 
-      github: "https://github.com/",
-      live: "#",
+      github: "https://github.com/harshith8899/SDC",
+      live: "https://studentdevclub.pages.dev/",
     },
 
     {
@@ -44,8 +44,8 @@ function Projects() {
         "MongoDB",
       ],
 
-      github: "https://github.com/",
-      live: "#",
+      github: null,
+      live: null,
     },
 
     {
@@ -65,8 +65,8 @@ function Projects() {
         "Visualization",
       ],
 
-      github: "https://github.com/",
-      live: "#",
+      github: null,
+      live: null,
     },
   ];
 
@@ -198,7 +198,7 @@ function Projects() {
         <div className="projects-more">
 
           <a
-            href="https://github.com/"
+            href="https://github.com/Harshan-c"
             target="_blank"
             rel="noreferrer"
             className="projects-more-button"
