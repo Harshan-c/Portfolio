@@ -6878,6 +6878,295 @@ section {
 }
 
 /* =========================================
+   CONTACT NOTIFICATION
+========================================= */
+
+.contact-notification {
+  position: fixed;
+
+  right: 30px;
+
+  bottom: 30px;
+
+  z-index: 9999;
+
+  width: 380px;
+
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 14px;
+
+  padding: 18px;
+
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(20, 32, 90, 0.97),
+      rgba(12, 20, 65, 0.97)
+    );
+
+  border:
+    1px solid
+    rgba(100, 120, 255, 0.30);
+
+  backdrop-filter: blur(18px);
+
+  box-shadow:
+    0 15px 45px
+    rgba(0, 0, 0, 0.40),
+
+    0 0 25px
+    rgba(61, 220, 255, 0.08);
+
+  animation:
+    notification-slide-in
+    0.4s ease forwards;
+}
+
+
+/* =========================================
+   SUCCESS
+========================================= */
+
+.notification-success {
+  border-color:
+    rgba(61, 220, 255, 0.40);
+}
+
+
+/* =========================================
+   ERROR
+========================================= */
+
+.notification-error {
+  border-color:
+    rgba(255, 90, 120, 0.40);
+}
+
+
+/* =========================================
+   NOTIFICATION ICON
+========================================= */
+
+.notification-icon {
+
+  min-width: 42px;
+
+  width: 42px;
+
+  height: 42px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 50%;
+
+  font-size: 21px;
+
+  background:
+    rgba(61, 220, 255, 0.10);
+
+  color: #3ddcff;
+
+  border:
+    1px solid
+    rgba(61, 220, 255, 0.25);
+}
+
+
+.notification-error .notification-icon {
+
+  color: #ff718b;
+
+  background:
+    rgba(255, 90, 120, 0.10);
+
+  border-color:
+    rgba(255, 90, 120, 0.25);
+}
+
+
+/* =========================================
+   NOTIFICATION CONTENT
+========================================= */
+
+.notification-content {
+
+  flex: 1;
+
+  min-width: 0;
+}
+
+
+.notification-content strong {
+
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+
+.notification-content p {
+
+  margin: 0;
+
+  color: #aeb6d6;
+
+  font-size: 12px;
+
+  line-height: 1.55;
+}
+
+
+/* =========================================
+   CLOSE BUTTON
+========================================= */
+
+.notification-close {
+
+  width: 28px;
+
+  height: 28px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  padding: 0;
+
+  border: none;
+
+  border-radius: 7px;
+
+  background:
+    rgba(255, 255, 255, 0.05);
+
+  color: #7f8ab4;
+
+  font-size: 15px;
+
+  cursor: pointer;
+
+  transition:
+    color 0.25s ease,
+    background 0.25s ease;
+}
+
+
+.notification-close:hover {
+
+  color: #ffffff;
+
+  background:
+    rgba(61, 220, 255, 0.10);
+}
+
+
+/* =========================================
+   ANIMATION
+========================================= */
+
+@keyframes notification-slide-in {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(25px)
+      translateX(20px);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      translateX(0);
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .contact-notification {
+
+    right: 15px;
+
+    bottom: 15px;
+
+    left: 15px;
+
+    width: auto;
+
+    padding: 15px;
+
+    gap: 12px;
+
+    border-radius: 12px;
+  }
+
+
+  .notification-icon {
+
+    min-width: 38px;
+
+    width: 38px;
+
+    height: 38px;
+
+    font-size: 19px;
+  }
+
+
+  .notification-content strong {
+
+    font-size: 13px;
+  }
+
+
+  .notification-content p {
+
+    font-size: 11px;
+
+    line-height: 1.5;
+  }
+
+
+  .notification-close {
+
+    width: 26px;
+
+    height: 26px;
+
+    font-size: 14px;
+  }
+
+}
+
+/* =========================================
    FINAL SECTION SPACING
 ========================================= */
 

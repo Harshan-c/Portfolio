@@ -7,9 +7,13 @@ import {
   FiSend,
   FiGithub,
   FiLinkedin,
+  FiCheckCircle,
+  FiAlertCircle,
+  FiX,
 } from "react-icons/fi";
 
 function Contact() {
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -17,63 +21,122 @@ function Contact() {
     message: "",
   });
 
+  // Notification state
+  const [notification, setNotification] = useState({
+    show: false,
+    type: "",
+    message: "",
+  });
+
+
   const handleChange = (e) => {
+
     const { name, value } = e.target;
 
     setFormData({
       ...formData,
       [name]: value,
     });
+
   };
 
+
+  const showNotification = (type, message) => {
+
+    setNotification({
+      show: true,
+      type: type,
+      message: message,
+    });
+
+    // Automatically hide after 4 seconds
+    setTimeout(() => {
+
+      setNotification({
+        show: false,
+        type: "",
+        message: "",
+      });
+
+    }, 4000);
+  };
+
+
+  const closeNotification = () => {
+
+    setNotification({
+      show: false,
+      type: "",
+      message: "",
+    });
+
+  };
+
+
   const handleSubmit = (e) => {
-  e.preventDefault();
 
-  emailjs
-    .send(
-      process.env.REACT_APP_EMAILJS_SERVICE_ID,
-      process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
-      {
-        name: formData.name,
-        email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-      },
-      {
-        publicKey: process.env.REACT_APP_EMAILJS_PUBLIC_KEY,
-      }
-    )
-    .then(
-      () => {
-        alert(
-          "Message sent successfully! Thank you for contacting me."
-        );
+    e.preventDefault();
 
-        setFormData({
-          name: "",
-          email: "",
-          subject: "",
-          message: "",
-        });
-      },
-      (error) => {
-        console.error("EmailJS Error:", error);
+    emailjs
+      .send(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID,
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+        {
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        {
+          publicKey:
+            process.env.REACT_APP_EMAILJS_PUBLIC_KEY,
+        }
+      )
+      .then(
+        () => {
 
-        alert(
-          "Something went wrong while sending your message."
-        );
-      }
-    );
-};
+          showNotification(
+            "success",
+            "Message sent successfully! Thank you for contacting me."
+          );
+
+          setFormData({
+            name: "",
+            email: "",
+            subject: "",
+            message: "",
+          });
+
+        },
+        (error) => {
+
+          console.error(
+            "EmailJS Error:",
+            error
+          );
+
+          showNotification(
+            "error",
+            "Something went wrong while sending your message. Please try again."
+          );
+
+        }
+      );
+
+  };
+
 
   return (
     <section
       className="contact-section"
       id="contact"
     >
+
       <div className="contact-container">
 
-        {/* Section Heading */}
+        {/* =========================================
+            SECTION HEADING
+        ========================================= */}
 
         <div className="section-heading">
 
@@ -91,11 +154,16 @@ function Contact() {
         </div>
 
 
-        {/* Contact Content */}
+        {/* =========================================
+            CONTACT CONTENT
+        ========================================= */}
 
         <div className="contact-content">
 
-          {/* Left Side */}
+
+          {/* =========================================
+              LEFT SIDE
+          ========================================= */}
 
           <div className="contact-info">
 
@@ -103,11 +171,13 @@ function Contact() {
               GET IN TOUCH
             </span>
 
+
             <h3>
               Let's build something
               <span> amazing </span>
               together.
             </h3>
+
 
             <p>
               I'm always interested in hearing about
@@ -120,38 +190,44 @@ function Contact() {
             {/* Email */}
 
             <a
-              href="mailto:charshan30@gmail.com"
+              href="mailto:yourmail@gmail.com"
               className="contact-item"
             >
+
               <div className="contact-icon">
                 <FiMail />
               </div>
 
               <div>
                 <span>Email</span>
+
                 <strong>
                   charshan30@gmail.com
                 </strong>
               </div>
+
             </a>
 
 
             {/* Phone */}
 
             <a
-              href="tel:+919019427571"
+              href="tel:+910000000000"
               className="contact-item"
             >
+
               <div className="contact-icon">
                 <FiPhone />
               </div>
 
               <div>
                 <span>Phone</span>
+
                 <strong>
                   +91 9019427571
                 </strong>
               </div>
+
             </a>
 
 
@@ -165,6 +241,7 @@ function Contact() {
 
               <div>
                 <span>Location</span>
+
                 <strong>
                   India
                 </strong>
@@ -178,7 +255,7 @@ function Contact() {
             <div className="contact-socials">
 
               <a
-                href="https://github.com/Harshan-c"
+                href="https://github.com/"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="GitHub"
@@ -186,8 +263,9 @@ function Contact() {
                 <FiGithub />
               </a>
 
+
               <a
-                href="https://www.linkedin.com/in/harshan-c-15589b31a/"
+                href="https://linkedin.com/"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="LinkedIn"
@@ -200,7 +278,9 @@ function Contact() {
           </div>
 
 
-          {/* Right Side - Form */}
+          {/* =========================================
+              RIGHT SIDE - FORM
+          ========================================= */}
 
           <div className="contact-form-wrapper">
 
@@ -210,6 +290,8 @@ function Contact() {
             >
 
               <div className="form-row">
+
+                {/* Name */}
 
                 <div className="form-group">
 
@@ -229,6 +311,8 @@ function Contact() {
 
                 </div>
 
+
+                {/* Email */}
 
                 <div className="form-group">
 
@@ -299,6 +383,7 @@ function Contact() {
                 type="submit"
                 className="contact-submit"
               >
+
                 Send Message
 
                 <FiSend />
@@ -312,6 +397,66 @@ function Contact() {
         </div>
 
       </div>
+
+
+      {/* =========================================
+          CUSTOM NOTIFICATION
+      ========================================= */}
+
+      {notification.show && (
+
+        <div
+          className={`contact-notification ${
+            notification.type === "success"
+              ? "notification-success"
+              : "notification-error"
+          }`}
+        >
+
+          {/* Icon */}
+
+          <div className="notification-icon">
+
+            {notification.type === "success" ? (
+              <FiCheckCircle />
+            ) : (
+              <FiAlertCircle />
+            )}
+
+          </div>
+
+
+          {/* Message */}
+
+          <div className="notification-content">
+
+            <strong>
+              {notification.type === "success"
+                ? "Success"
+                : "Message Failed"}
+            </strong>
+
+            <p>
+              {notification.message}
+            </p>
+
+          </div>
+
+
+          {/* Close */}
+
+          <button
+            className="notification-close"
+            onClick={closeNotification}
+            aria-label="Close notification"
+          >
+            <FiX />
+          </button>
+
+        </div>
+
+      )}
+
     </section>
   );
 }

@@ -42,7 +42,7 @@ function Education() {
   },
 
   {
-    year: "2022",
+    year: "2020",
     degree: "SSLC / 10th Standard",
     institution: "Pavithra Vidyanikethana English High School",
     location: "Bangalore",
