@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import emailjs from "@emailjs/browser";
 import {
   FiMail,
   FiPhone,
@@ -26,19 +27,44 @@ function Contact() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    console.log("Contact Form:", formData);
+  emailjs
+    .send(
+      process.env.REACT_APP_EMAILJS_SERVICE_ID,
+      process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+      {
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      },
+      {
+        publicKey: process.env.REACT_APP_EMAILJS_PUBLIC_KEY,
+      }
+    )
+    .then(
+      () => {
+        alert(
+          "Message sent successfully! Thank you for contacting me."
+        );
 
-    alert("Thank you! Your message has been submitted.");
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      },
+      (error) => {
+        console.error("EmailJS Error:", error);
 
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    });
-  };
+        alert(
+          "Something went wrong while sending your message."
+        );
+      }
+    );
+};
 
   return (
     <section
@@ -94,7 +120,7 @@ function Contact() {
             {/* Email */}
 
             <a
-              href="mailto:yourmail@gmail.com"
+              href="mailto:charshan30@gmail.com"
               className="contact-item"
             >
               <div className="contact-icon">
@@ -113,7 +139,7 @@ function Contact() {
             {/* Phone */}
 
             <a
-              href="tel:+910000000000"
+              href="tel:+919019427571"
               className="contact-item"
             >
               <div className="contact-icon">
@@ -152,7 +178,7 @@ function Contact() {
             <div className="contact-socials">
 
               <a
-                href="https://github.com/"
+                href="https://github.com/Harshan-c"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="GitHub"
@@ -161,7 +187,7 @@ function Contact() {
               </a>
 
               <a
-                href="https://linkedin.com/"
+                href="https://www.linkedin.com/in/harshan-c-15589b31a/"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="LinkedIn"

@@ -1,56 +1,67 @@
 import React, { useEffect, useState } from "react";
 import {
-  FaGithub,
-  FaLinkedin,
-} from "react-icons/fa";
-import { FiDownload } from "react-icons/fi";
+  FiGithub,
+  FiLinkedin,
+  FiDownload,
+  FiMenu,
+  FiX,
+} from "react-icons/fi";
+
+const sections = [
+    "home",
+    "about",
+    "skills",
+    "projects",
+    "education",
+    "contact",
+  ];
 
 function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
-  // NAVIGATION
+  //  NAVIGATION CLICK
 
-  const handleNavigation = (sectionId) => {
-    setActiveSection(sectionId);
+  const handleNavClick = (section) => {
+    setMenuOpen(false);
 
-           
-    const section = document.getElementById(sectionId);
+    const element = document.getElementById(section);
 
-    if (section) {
-      section.scrollIntoView({
+    if (element) {
+      const navbarHeight = 90;
+
+      const elementPosition =
+        element.getBoundingClientRect().top +
+        window.scrollY;
+
+      window.scrollTo({
+        top: elementPosition - navbarHeight,
         behavior: "smooth",
-        block: "start",
       });
+
+      setActiveSection(section);
     }
   };
 
-
-    // DETECT SECTION WHILE SCROLLING
+  // ACTIVE SECTION WHILE SCROLLING
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = [
-        "home",
-        "about",
-        "skills",
-        "projects",
-        "education",
-        "contact",
-      ];
-
-      const scrollPosition = window.scrollY;
+      const scrollPosition =
+        window.scrollY + 150;
 
       let currentSection = "home";
 
-      sections.forEach((sectionId) => {
-        const section = document.getElementById(sectionId);
+      sections.forEach((section) => {
+        const element =
+          document.getElementById(section);
 
-        if (section) {
+        if (element) {
           const sectionTop =
-            section.offsetTop - 150;
+            element.offsetTop;
 
           if (scrollPosition >= sectionTop) {
-            currentSection = sectionId;
+            currentSection = section;
           }
         }
       });
@@ -58,15 +69,12 @@ function Navbar() {
       setActiveSection(currentSection);
     };
 
-
     window.addEventListener(
       "scroll",
       handleScroll
     );
 
-
     handleScroll();
-
 
     return () => {
       window.removeEventListener(
@@ -80,143 +88,151 @@ function Navbar() {
   return (
     <nav className="navbar">
 
-      {/* LOGO */}
+      <div className="navbar-container">
 
-      <div className="navbar-logo">
-        <div className="logo-shape"></div>
+        {/* LOGO */}
+
+        <button
+          className="navbar-logo"
+          onClick={() =>
+            handleNavClick("home")
+          }
+          aria-label="Go to home"
+        >
+          <span>HS</span>
+        </button>
+
+
+        {/* DESKTOP NAVIGATION */}
+
+        <div className="navbar-menu">
+
+          {sections.map((section) => (
+            <button
+              key={section}
+              className={`nav-link ${
+                activeSection === section
+                  ? "active"
+                  : ""
+              }`}
+              onClick={() =>
+                handleNavClick(section)
+              }
+            >
+              {section === "home" && "Home"}
+              {section === "about" && "About"}
+              {section === "skills" && "Skills"}
+              {section === "projects" && "Projects"}
+              {section === "education" && "Education"}
+              {section === "contact" && "Contact"}
+            </button>
+          ))}
+
+        </div>
+
+
+        {/* DESKTOP RIGHT SIDE */}
+
+        <div className="navbar-actions">
+
+          <a
+            href="https://github.com/Harshan-c"
+            target="_blank"
+            rel="noreferrer"
+            className="social-icon"
+            aria-label="GitHub"
+          >
+            <FiGithub />
+          </a>
+
+
+          <a
+            href="https://www.linkedin.com/in/harshan-c-15589b31a/"
+            target="_blank"
+            rel="noreferrer"
+            className="social-icon"
+            aria-label="LinkedIn"
+          >
+            <FiLinkedin />
+          </a>
+
+
+          <a
+            href="/Harshan-CV.pdf"
+            download
+            className="cv-button"
+          >
+            <span>Download CV</span>
+            <FiDownload />
+          </a>
+
+        </div>
+
+
+        {/* MOBILE MENU BUTTON */}
+
+        <button
+          className="mobile-menu-button"
+          onClick={() =>
+            setMenuOpen(!menuOpen)
+          }
+          aria-label="Toggle navigation menu"
+          aria-expanded={menuOpen}
+        >
+          {menuOpen ? (
+            <FiX />
+          ) : (
+            <FiMenu />
+          )}
+        </button>
+
       </div>
 
 
-      {/* NAVIGATION */}
+      {/* MOBILE MENU */}
 
-      <div className="navbar-menu">
+      <div
+        className={`mobile-menu ${
+          menuOpen
+            ? "mobile-menu-open"
+            : ""
+        }`}
+      >
 
-        <button
-          className={`nav-link ${
-            activeSection === "home"
-              ? "active"
-              : ""
-          }`}
-          onClick={() =>
-            handleNavigation("home")
-          }
-        >
-          Home
-        </button>
-
-
-        <button
-          className={`nav-link ${
-            activeSection === "about"
-              ? "active"
-              : ""
-          }`}
-          onClick={() =>
-            handleNavigation("about")
-          }
-        >
-          About
-        </button>
-
-
-        <button
-          className={`nav-link ${
-            activeSection === "skills"
-              ? "active"
-              : ""
-          }`}
-          onClick={() =>
-            handleNavigation("skills")
-          }
-        >
-          Skills
-        </button>
+        {sections.map((section) => (
+          <button
+            key={section}
+            className={`mobile-nav-link ${
+              activeSection === section
+                ? "mobile-active"
+                : ""
+            }`}
+            onClick={() =>
+              handleNavClick(section)
+            }
+          >
+            {section === "home" && "Home"}
+            {section === "about" && "About"}
+            {section === "skills" && "Skills"}
+            {section === "projects" && "Projects"}
+            {section === "education" && "Education"}
+            {section === "contact" && "Contact"}
+          </button>
+        ))}
 
 
-        <button
-          className={`nav-link ${
-            activeSection === "projects"
-              ? "active"
-              : ""
-          }`}
-          onClick={() =>
-            handleNavigation("projects")
-          }
-        >
-          Projects
-        </button>
-
-
-        <button
-          className={`nav-link ${
-            activeSection === "education"
-              ? "active"
-              : ""
-          }`}
-          onClick={() =>
-            handleNavigation("education")
-          }
-        >
-          Education
-        </button>
-
-
-        <button
-          className={`nav-link ${
-            activeSection === "contact"
-              ? "active"
-              : ""
-          }`}
-          onClick={() =>
-            handleNavigation("contact")
-          }
-        >
-          Contact
-        </button>
-
-      </div>
-
-
-      {/* RIGHT SIDE */}
-
-      <div className="navbar-actions">
-
-        {/* GitHub */}
-
-        <a
-          href="https://github.com/Harshan-c"
-          target="_blank"
-          rel="noreferrer"
-          className="social-icon"
-          aria-label="GitHub"
-        >
-          <FaGithub />
-        </a>
-
-
-        {/* LinkedIn */}
-
-        <a
-          href="https://www.linkedin.com/in/harshan-c-15589b31a/"
-          target="_blank"
-          rel="noreferrer"
-          className="social-icon"
-          aria-label="LinkedIn"
-        >
-          <FaLinkedin />
-        </a>
-
-
-        {/* Download CV */}
+        {/* Mobile CV */}
 
         <a
           href="/Harshan-CV.pdf"
-          className="cv-button"
           download
+          className="mobile-download-cv"
+          onClick={() =>
+            setMenuOpen(false)
+          }
         >
-          Download CV
-
           <FiDownload />
+          Download CV
         </a>
 
       </div>

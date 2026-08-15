@@ -9,7 +9,7 @@ import {
 function Education() {
   const educationData = [
     {
-      year: "2024 - Present",
+      year: "2025 - Present",
       degree: "Master of Computer Applications",
       institution: "PES University",
       location: "RR Campus Bangalore",
@@ -18,7 +18,7 @@ function Education() {
       icon: <FiBookOpen />,
     },
     {
-      year: "2021 - 2024",
+      year: "2022 - 2024",
       degree: "Bachelor's Degree",
       institution: "Seshadripuram College",
       location: "Bangalore",
