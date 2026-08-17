@@ -255,7 +255,7 @@ function Contact() {
             <div className="contact-socials">
 
               <a
-                href="https://github.com/"
+                href="https://github.com/Harshan-c"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="GitHub"
@@ -265,7 +265,7 @@ function Contact() {
 
 
               <a
-                href="https://linkedin.com/"
+                href="https://www.linkedin.com/in/harshan-c-15589b31a/"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="LinkedIn"
