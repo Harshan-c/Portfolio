@@ -7,21 +7,91 @@
   box-sizing: border-box;
 }
 
-html,
-body,
-#root {
-  margin: 0;
-  padding: 0;
-  min-height: 100%;
+/* =========================================
+   SCROLL / RENDERING STABILITY FIX
+========================================= */
+
+html {
   background: #080f35;
+  min-height: 100%;
 }
 
 body {
+  background: #080f35;
+  min-height: 100%;
   overflow-x: hidden;
 }
 
-#root {
+#root,
+.App {
+  background: #080f35;
   min-height: 100vh;
+}
+
+
+/* Prevent sections from becoming transparent
+   while the browser repaints during scrolling */
+
+.hero,
+.about-section,
+.skills-section,
+.projects-section,
+.education-section,
+.contact-section,
+.footer {
+  background-color: #080f35;
+}
+
+
+/* Keep large visual layers from affecting
+   the document outside their section */
+
+.hero,
+.about-section,
+.skills-section,
+.projects-section,
+.education-section,
+.contact-section {
+  isolation: isolate;
+}
+
+
+/* Improve rendering of animated hero elements */
+
+.developer-image,
+.floating-tech {
+  will-change: transform;
+}
+
+
+/* Keep decorative elements from creating
+   unexpected rendering areas */
+
+.hero-glow,
+.developer-glow,
+.image-glow {
+  pointer-events: none;
+}
+
+
+/* =========================================
+   SAFER MOBILE RENDERING
+========================================= */
+
+@media (max-width: 768px) {
+
+  .navbar,
+  .mobile-menu,
+  .hero-stats,
+  .about-feature-card,
+  .skill-category,
+  .project-card,
+  .education-card,
+  .contact-form-wrapper {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
 }
 
 
