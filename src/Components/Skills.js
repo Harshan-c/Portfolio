@@ -23,22 +23,18 @@ function Skills() {
   const programmingSkills = [
     {
       name: "Python",
-      level: "90%",
       icon: <FaPython />,
     },
     {
       name: "C",
-      level: "80%",
       icon: <SiC />,
     },
     {
       name: "Java",
-      level: "75%",
       icon: <FaJava />,
     },
     {
       name: "JavaScript",
-      level: "80%",
       icon: <FaJsSquare />,
     },
   ];
@@ -46,17 +42,14 @@ function Skills() {
   const frontendSkills = [
     {
       name: "React",
-      level: "85%",
       icon: <FaReact />,
     },
     {
       name: "HTML",
-      level: "90%",
       icon: <FaHtml5 />,
     },
     {
       name: "CSS",
-      level: "85%",
       icon: <FaCss3Alt />,
     },
   ];
@@ -64,22 +57,18 @@ function Skills() {
   const backendSkills = [
     {
       name: "Node.js",
-      level: "80%",
       icon: <FaNodeJs />,
     },
     {
       name: "Express.js",
-      level: "75%",
       icon: <SiExpress />,
     },
     {
       name: "MongoDB",
-      level: "75%",
       icon: <SiMongodb />,
     },
     {
       name: "MySQL",
-      level: "75%",
       icon: <SiMysql />,
     },
   ];
@@ -87,22 +76,18 @@ function Skills() {
   const dataSkills = [
     {
       name: "Pandas",
-      level: "85%",
       icon: <SiPandas />,
     },
     {
       name: "NumPy",
-      level: "85%",
       icon: <SiNumpy />,
     },
     {
       name: "Machine Learning",
-      level: "80%",
       icon: <SiScikitlearn />,
     },
     {
       name: "Git",
-      level: "80%",
       icon: <FaGitAlt />,
     },
   ];
@@ -124,21 +109,6 @@ function Skills() {
             </span>
 
           </div>
-
-          <span className="skill-percentage">
-            {skill.level}
-          </span>
-
-        </div>
-
-        <div className="skill-bar">
-
-          <div
-            className="skill-progress"
-            style={{
-              width: skill.level,
-            }}
-          ></div>
 
         </div>
 
